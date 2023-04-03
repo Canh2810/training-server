@@ -1,0 +1,22 @@
+{
+  "name": "training-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Canh2810/training-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Canh2810/training-server/issues"
+  },
+  "homepage": "https://github.com/Canh2810/training-server#readme",
+  "dependencies": {
+    "json-server": "^0.17.3"
+  }
+}
