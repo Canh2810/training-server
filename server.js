@@ -1,18 +1,22 @@
-const express = require('express');
+const jsonServer = require('json-server');
+const server = jsonServer.create();
+const router = jsonServer.router('db.json');
+const middlewares = jsonServer.defaults();
+
+// Add middleware to serve index.html for non-API routes
 const path = require('path');
-
-const app = express();
-
-// Serve static files from the build folder
-app.use(express.static(path.join(__dirname, 'build')));
-
-// Always serve the index.html file for non-static routes
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+server.use((req, res, next) => {
+  if (req.method === 'GET' && req.headers.accept.indexOf('html') !== -1) {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  } else {
+    next();
+  }
 });
 
-// Start the server
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
+server.use(middlewares);
+server.use(router);
+
+const port = process.env.PORT || 3200;
+server.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
 });
